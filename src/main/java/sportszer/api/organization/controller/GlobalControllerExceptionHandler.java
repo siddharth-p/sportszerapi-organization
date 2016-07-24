@@ -9,7 +9,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class GlobalControllerExceptionHandler {
 
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	@ExceptionHandler({ RuntimeException.class, Exception.class })
+	@ExceptionHandler(Exception.class)
+	public String handleExceptions(Exception e) {
+		return e.getMessage();
+	}
+
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ExceptionHandler(RuntimeException.class)
 	public String handleRuntimeExceptions(RuntimeException e) {
 		return e.getMessage();
 	}
